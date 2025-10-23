@@ -1,17 +1,32 @@
-# Function to create a caching Fibonacci function
+"""Module for creating a caching Fibonacci function using closures."""
 
 def caching_fibonacci() -> callable:
-    cache = {} # Dictionary to store previously computed Fibonacci numbers
+    """Create a caching Fibonacci function using closure.
+    
+    Creates and returns a Fibonacci function that uses memoization
+    to cache previously computed values for improved performance.
+    
+    Returns:
+        callable: A Fibonacci function with built-in caching
+    """
+    cache = {}
 
     def fibonacci(n: int) -> int:
+        """Calculate the nth Fibonacci number with caching.
+        
+        Args:
+            n (int): The position in the Fibonacci sequence
+            
+        Returns:
+            int: The nth Fibonacci number
+        """
         if n <= 0:
-            return 0 # Return 0 for non-positive integers
+            return 0
         elif n == 1:
-            return 1 # Base case: Fibonacci(1) = 1
+            return 1
         elif n in cache:
-            return cache[n] # Return cached value if it exists
+            return cache[n]
         else:
-            # Compute Fibonacci recursively and store in cache
             cache[n] = fibonacci(n - 1) + fibonacci(n - 2)
         return cache[n]
 
@@ -21,5 +36,5 @@ def caching_fibonacci() -> callable:
 
 fib = caching_fibonacci()
 
-print(fib(10))  # 55
-print(fib(15))  # 610
+print(fib(10))
+print(fib(15))
